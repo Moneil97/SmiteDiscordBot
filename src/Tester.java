@@ -21,6 +21,8 @@ import sx.blah.discord.handle.obj.IUser;
 import sx.blah.discord.util.DiscordException;
 import sx.blah.discord.util.EmbedBuilder;
 
+//https://github.com/cr5315/jSmite
+
 public class Tester {
 
 	long nib = 91004988247011328l;
@@ -313,20 +315,21 @@ public class Tester {
 				
 				String next = scan.nextLine();
 				
-				System.out.println(next);
+				//System.out.println(next);
 				
-				if (next.contains("<a href=\"//")) {
+				String prefix = "href=\"http://i.imgur.com/";
+				if (next.contains(prefix)) {
 					
 					//System.out.println(next);
-					next = next.substring(next.indexOf("<meta property=\"al:web:url\" content=\"") + "<meta property=\"al:web:url\" content=\"".length(), next.indexOf("\" />")-1);
+					next = next.substring(next.indexOf(prefix) + prefix.length(), next.indexOf("\"/>"));
 					System.out.println(next);
 					
-					char[] c = next.toCharArray();
+					/*char[] c = next.toCharArray();
 					
 					for (int i=c.length-1; i>0; i--)
 						if (c[i] == 'b') {
 							next = "http:" + next.substring(0,i) + next.substring(i+1);
-						}
+						}*/
 					
 					scan.close();
 					in.close();
@@ -334,7 +337,7 @@ public class Tester {
 					//System.out.println(next);
 					EmbedBuilder e = new EmbedBuilder();
 					e.withColor(new Color(245,160,69));
-					e.withImage(next);
+					e.withImage("http://i.imgur.com/" + next);
 					//e.appendField("image: ", next, true);
 					return e.build();
 				}
